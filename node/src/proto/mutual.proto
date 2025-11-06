@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package mutual;
+
+// Denne linje er *vigtig* — uden den virker protoc ikke
+option go_package = "github.com/ErolEskici/Mandatory-Activity-4/node/src/proto;proto";
+
+message RequestMessage {
+  int32 id = 1;
+  int32 timestamp = 2;
+}
+
+message ReplyMessage {
+  int32 id = 1;
+}
+
+message Ack {}
+
+service MutualExclusion {
+  rpc RequestAccess(RequestMessage) returns (Ack);
+  rpc ReplyAccess(ReplyMessage) returns (Ack);
+}

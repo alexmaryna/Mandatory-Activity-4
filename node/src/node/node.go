@@ -3,7 +3,10 @@ package node
 import (
 	"node/node/src/proto"
 	"sync"
+	"time"
 )
+
+var baseTimestamp = time.Now().Unix()
 
 type Node struct {
 	proto.UnimplementedMutualExclusionServer

@@ -33,7 +33,7 @@ func (n *Node) ReplyAccess(ctx context.Context, reply *proto.ReplyMessage) (*pro
 func SendRequest(n *Node) {
 	n.mu.Lock()
 	n.state = "WANTED"
-	n.timestamp = int(time.Now().Unix())
+	n.timestamp = int(time.Now().Unix()-baseTimestamp)*10 + n.Id
 	n.pendingReplies = len(n.peers)
 	myTimestamp := n.timestamp
 	n.mu.Unlock()

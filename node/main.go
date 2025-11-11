@@ -41,6 +41,7 @@ func main() {
 	log.Printf("===========================================================================")
 	// Tests if a node can request cs
 	log.Printf("Test 1: One node can request CS")
+	log.Printf("===========================================================================")
 	go node.SendRequest(n1)
 
 	time.Sleep(5 * time.Second)
@@ -48,18 +49,25 @@ func main() {
 	// Two nodes can request cs at the same time
 	log.Printf("===========================================================================")
 	log.Printf("Tests 2: Two nodes can request CS at the same time")
+	log.Printf("===========================================================================")
 	go node.SendRequest(n2)
 	time.Sleep(10 * time.Second)
 	go node.SendRequest(n3)
 
+	time.Sleep(10 * time.Second)
+
 	// 3 nodes can request cs
 	log.Printf("===========================================================================")
 	log.Printf("\n Test 3: All nodes can request CS")
+	log.Printf("===========================================================================")
 	go node.SendRequest(n1)
 	go node.SendRequest(n2)
 	go node.SendRequest(n3)
 
-	select {}
+	time.Sleep(10 * time.Second)
+
+	log.Printf("===========================================================================")
+	log.Printf("All test is completed")
 }
 
 func startgRPC(n *node.Node) {
